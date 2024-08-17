@@ -1,0 +1,221 @@
+{
+"Pose": [
+"aa",
+"ab",
+"ac"
+],
+"FootPose": [
+"ba",
+"bb",
+"bc",
+"bd",
+"be"
+],
+"CharaFilter": [
+"bi",
+"bf",
+"bg",
+"bh"
+],
+"BodyHeight": [
+"ca"
+],
+"ArmHeight": [
+"cc",
+"cd",
+"ce"
+],
+"LegHeight": [
+"cf",
+"cg",
+"ch"
+],
+"Tin": [
+"qa",
+"qb",
+"dc",
+"eh"
+],
+"Hair": [
+"ea",
+"ec",
+"ed",
+"ef",
+"eg"
+],
+"HairEx": [
+"r"
+],
+"Eye": [
+"fa",
+"fb",
+"fh",
+"fk",
+"fc",
+"fj"
+],
+"Eyebrow": [
+"fd",
+"fe",
+"ff",
+"fg",
+"fi",
+"pa"
+],
+"Mark": [
+"t"
+],
+"Heart": [
+"ga",
+"gb",
+"gc",
+"ge",
+"gh",
+"gf",
+"gg",
+"gd"
+],
+"Emotion": [
+"ha",
+"hb",
+"hc",
+"hd"
+],
+"Hand": [
+"ad",
+"ae"
+],
+"Skirt": [
+"ic",
+"jc",
+"ie"
+],
+"Socks0": [
+"ja",
+"jb",
+"jf",
+"jg"
+],
+"Vibrator": [
+"kg"
+],
+"Hat": [
+"la",
+"lb",
+"oa",
+"os",
+"ob",
+"oc",
+"od",
+"oe",
+"of",
+"lc"
+],
+"Ribon": [
+"m"
+],
+"Belt": [
+"s"
+],
+"Wristband0": [
+"og",
+"oh",
+"oo",
+"op",
+"oq",
+"or"
+],
+"ArmBracelet0": [
+"om",
+"on",
+"ok",
+"ol",
+"oi",
+"oj"
+],
+"CharaLoad": [
+"f"
+],
+"HeaderFreeHand": [
+"a",
+"b",
+"c",
+"d"
+],
+"HeaderFreeRibon": [
+"w"
+],
+"HeaderFreeBelt": [
+"x"
+],
+"HeaderFreeChair": [
+"e"
+],
+"HeaderFreeFlag": [
+"y"
+],
+"Background": [
+"ua",
+"uf",
+"ue",
+"ub"
+],
+"txt": [
+"u0",
+"u1",
+"u2",
+"u3",
+"u4",
+"u5",
+"u6",
+"u7",
+"u8",
+"u9"
+],
+"Loadmenu": [
+"v"
+],
+"SystemOption": [
+"ud",
+"ug"
+],
+"Story": [
+"uc"
+],
+"Tan": [
+"da",
+"db",
+"dd",
+"dh",
+"di"
+],
+"Ears": [
+"pb",
+"pc",
+"pd",
+"pe"
+],
+"ShirtOuter": [
+"ia",
+"if"
+],
+"ShirtInner": [
+"ib",
+"id"
+],
+"Shoes": [
+"jd",
+"je"
+],
+"Underwear": [
+"ka",
+"kb",
+"kc",
+"kd",
+"ke",
+"kf"
+],
+"HeaderFreeDialogueBox": [
+"z"
+]
+}
