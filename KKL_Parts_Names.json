@@ -1,0 +1,1151 @@
+{
+"fv": [
+"SourceVersion_minor",
+"SourceVersion_alpha"
+],
+"aa": [
+"LeftArm_meter",
+"LeftArm2_meter",
+"LeftArm2_depth",
+"LeftHand_menu",
+"LeftHand2_meter",
+"RightArm_meter",
+"RightArm2_meter",
+"RightArm2_depth",
+"RightHand_menu",
+"RightHand2_meter",
+"LeftArmFreeRotation_check",
+"RightArmFreeRotation_check"
+],
+"ab": [
+"Item0_menu",
+"Item0_color0",
+"Item0_color1",
+"Item0_color2"
+],
+"ac": [
+"Item1_menu",
+"Item1_color0",
+"Item1_color1",
+"Item1_color2"
+],
+"ba": [
+"Head_meter"
+],
+"bb": [
+"Ashi_menu",
+"Ashi_reversal"
+],
+"bd": [
+"Ashi2_menu"
+],
+"bc": [
+"Xmove_meter",
+"Ymove_meter",
+"Ymove_depth",
+"Jump_meter",
+"Shadow_visible",
+"BodyYMove_meter"
+],
+"bf": [
+"CharaDropShadow_menu",
+"CharaDropShadow_color0",
+"CharaDropShadowIn_check",
+"CharaDropShadowOut_check",
+"CharaDropShadowHide_check",
+"CharaDropShadowAlpha_meter",
+"CharaDropShadowStr_meter",
+"CharaDropShadowX_meter",
+"CharaDropShadowY_meter",
+"CharaDropShadowRotation_meter",
+"CharaDropShadowDistance_meter"
+],
+"bg": [
+"CharaBlur_menu",
+"CharaBlurX_meter",
+"CharaBlurY_meter"
+],
+"bi": [
+"BodyPlus_menu",
+"BodyPlus_color0",
+"BodyAlpha_meter",
+"BodyPlusMeter_meter"
+],
+"bh": [
+"CharaFilterEmotion_check"
+],
+"be": [
+"Rmove_meter"
+],
+"ca": [
+"BodyHeight_meter",
+"Waist_menu",
+"douHeight_meter",
+"AshiHeight_meter",
+"BodyWidth_meter",
+"HipWidth_meter",
+"HandWidth_meter",
+"AshiWidth_meter",
+"ShoulderWidth_meter",
+"Heso_menu",
+"WaistAlpha_meter",
+"BodySize_meter",
+"UpperBodyVisible_visible",
+"LowerBodyVisible_visible"
+],
+"cc": [
+"LeftArmScaleX_meter",
+"LeftArmScaleY_meter",
+"LeftArmOffsetX_meter",
+"LeftArmOffsetY_meter",
+"RightArmScaleX_meter",
+"RightArmScaleY_meter",
+"RightArmOffsetX_meter",
+"RightArmOffsetY_meter",
+"LeftArmVisible_visible",
+"RightArmVisible_visible",
+"LeftArmFlip_check",
+"RightArmFlip_check"
+],
+"cd": [
+"LeftHandScaleX_meter",
+"LeftHandScaleY_meter",
+"LeftHandOffsetX_meter",
+"LeftHandOffsetY_meter",
+"RightHandScaleX_meter",
+"RightHandScaleY_meter",
+"RightHandOffsetX_meter",
+"RightHandOffsetY_meter",
+"LeftHandVisible_visible",
+"RightHandVisible_visible",
+"LeftHandFlip_check",
+"RightHandFlip_check"
+],
+"ce": [
+"LeftUpperArmScaleX_meter",
+"LeftUpperArmScaleY_meter",
+"LeftUpperArmOffsetX_meter",
+"LeftUpperArmOffsetY_meter",
+"RightUpperArmScaleX_meter",
+"RightUpperArmScaleY_meter",
+"RightUpperArmOffsetX_meter",
+"RightUpperArmOffsetY_meter",
+"LeftShoulderVisible_visible",
+"RightShoulderVisible_visible",
+"LeftUpperArmVisible_visible",
+"RightUpperArmVisible_visible"
+],
+"cf": [
+"LeftThighRotation_meter",
+"LeftThighScaleX_meter",
+"LeftThighScaleY_meter",
+"LeftThighOffsetX_meter",
+"LeftThighOffsetY_meter",
+"RightThighRotation_meter",
+"RightThighScaleX_meter",
+"RightThighScaleY_meter",
+"RightThighOffsetX_meter",
+"RightThighOffsetY_meter",
+"LeftThighVisible_visible",
+"RightThighVisible_visible",
+"LeftShiriVisible_visible",
+"RightShiriVisible_visible"
+],
+"cg": [
+"LeftLegRotation_meter",
+"LeftLegScaleX_meter",
+"LeftLegScaleY_meter",
+"LeftLegOffsetX_meter",
+"LeftLegOffsetY_meter",
+"RightLegRotation_meter",
+"RightLegScaleX_meter",
+"RightLegScaleY_meter",
+"RightLegOffsetX_meter",
+"RightLegOffsetY_meter",
+"LeftLegVisible_visible",
+"RightLegVisible_visible"
+],
+"ch": [
+"LeftFootRotation_meter",
+"LeftFootScaleX_meter",
+"LeftFootScaleY_meter",
+"LeftFootOffsetX_meter",
+"LeftFootOffsetY_meter",
+"RightFootRotation_meter",
+"RightFootScaleX_meter",
+"RightFootScaleY_meter",
+"RightFootOffsetX_meter",
+"RightFootOffsetY_meter",
+"LeftFootVisible_visible",
+"RightFootVisible_visible"
+],
+"da": [
+"Body_color0"
+],
+"db": [
+"Hiyake_menu",
+"Hiyake_color0"
+],
+"dd": [
+"Hoho_menu",
+"Contour_menu",
+"ContourWidth_meter",
+"ContourHeight_meter",
+"HeadScale_meter",
+"NeckHeight_meter",
+"NeckVisible_visible",
+"HeadVisible_visible"
+],
+"dh": [
+"Nipple_color0",
+"NippleSize_meter",
+"NippleHeight_meter",
+"NippleWidth_meter",
+"Nipple_menu"
+],
+"di": [
+"Breast_menu"
+],
+"qa": [
+"Tin_menu",
+"Tin_color0",
+"Tin_color1",
+"TinSize_meter",
+"TinEx_meter",
+"Tin_color2",
+"Tin_depth",
+"TinManualAuto_check",
+"TinBokki_check",
+"TinSwing_meter",
+"TinKawa_menu",
+"Tin_tClick",
+"TinSizeAuto_check",
+"TinScaleX_meter",
+"TinScaleY_meter",
+"TinOffsetX_meter",
+"TinOffsetY_meter"
+],
+"qb": [
+"Tama_menu",
+"TamaSize_meter"
+],
+"dc": [
+"s_sClick",
+"s_menu",
+"s_color0",
+"s_color1",
+"s_color2",
+"s_hidaPlay"
+],
+"eh": [
+"UnderHair_menu",
+"UnderHair_color0",
+"UnderHairAlpha_meter"
+],
+"ea": [
+"Hair_menu",
+"Hair_color0",
+"Hair_color1",
+"Hair_color2",
+"Hair_reversal",
+"Hair_sen"
+],
+"ec": [
+"HairBack_menu",
+"HairBack_Height_meter",
+"HairBack_color0",
+"HairBack_color1",
+"HairBack_color2",
+"HairBack_Width_meter",
+"HairBack_Y_meter",
+"HairBack_turn"
+],
+"ed": [
+"Bangs_menu",
+"Bangs_Height_meter",
+"Bangs_reversal",
+"Bangs_depth",
+"Bangs_color0",
+"Bangs_color1"
+],
+"ef": [
+"SideBurnLeft_menu",
+"SideBurnLeft_depth",
+"SideBurnLeft_Height_meter",
+"SideBurnLeft_color0",
+"SideBurnLeft_color1",
+"SideBurnLeft_color2",
+"SideBurnLeft_x_meter",
+"SideBurnLeft_turn"
+],
+"eg": [
+"SideBurnRight_menu",
+"SideBurnRight_depth",
+"SideBurnRight_Height_meter",
+"SideBurnRight_color0",
+"SideBurnRight_color1",
+"SideBurnRight_color2",
+"SideBurnRight_x_meter",
+"SideBurnRight_turn"
+],
+"r": [
+"Ha",
+"pr"
+],
+"fa": [
+"Eye_menu",
+"EyeX_meter",
+"EyeY_meter",
+"EyeScaleX_meter",
+"EyeScaleY_meter",
+"EyeRotation_meter",
+"Eye_color0",
+"Eye_depth"
+],
+"fb": [
+"Eyelib_menu"
+],
+"fh": [
+"Lowerlash_menu"
+],
+"fk": [
+"Eyelash_menu"
+],
+"fc": [
+"EyeballLeft_menu",
+"EyeballLeft_color0",
+"EyeballLeft_color1",
+"EyeballRight_menu",
+"EyeballRight_color0",
+"EyeballRight_color1",
+"EyeballScale_meter",
+"EyeballLeft_color2",
+"EyeballRight_color2",
+"EyeballScaleY_meter",
+"EyeballX_meter",
+"EyeballY_meter"
+],
+"fj": [
+"EyeballLight_menu",
+"EyeballLight_reversal",
+"EyeballLightRotation_meter"
+],
+"fd": [
+"Eyebrow_menu",
+"Eyebrow_depth",
+"EyebrowY_meter",
+"Eyebrow_color0",
+"Eyebrow_color1",
+"EyebrowRotation_meter",
+"EyebrowX_meter"
+],
+"fe": [
+"MouthScale_meter",
+"MouthY_meter"
+],
+"ff": [
+"FaceOption_visible"
+],
+"fg": [
+"Nose_menu",
+"NoseHeight_meter",
+"Nose_color0",
+"Nose_color1",
+"Nose_color2",
+"Nose_reversal",
+"NoseScaleX_meter",
+"NoseScaleY_meter"
+],
+"fi": [
+"NoseShadow_menu",
+"NoseShadowAlpha_meter",
+"NoseShadowHeight_meter",
+"NoseShadowScaleX_meter",
+"NoseShadowScaleY_meter"
+],
+"t": [
+"Mark_menu",
+"Mark_color0",
+"Mark_color1",
+"Mark_color2",
+"MarkScaleX_meter",
+"MarkScaleY_meter",
+"MarkRotation_meter",
+"MarkX_meter",
+"MarkY_meter",
+"Mark_reversal2",
+"MarkScaleB_meter",
+"Mark_depth",
+"MarkAlpha_meter",
+"MarkVary_menu",
+"MarkAdd_add0",
+"MarkFineX_meter",
+"MarkFineY_meter"
+],
+"pa": [
+"Ear_menu",
+"Ear_color0",
+"Ear_color1",
+"Ear_color2",
+"EarScale_meter",
+"EarRotation_meter",
+"EarX_meter",
+"EarY_meter",
+"Ear_sen",
+"Ear_senColor"
+],
+"pb": [
+"Mimi_menu",
+"Mimi_color0",
+"Mimi_color1",
+"Mimi_color2",
+"Mimi_mimihat"
+],
+"pc": [
+"Horn_menu",
+"Horn_color0",
+"Horn_color1",
+"Horn_color2",
+"Horn_depth",
+"HornScale_meter",
+"HornY_meter"
+],
+"pd": [
+"Hane_menu",
+"Hane_color0",
+"Hane_color1",
+"Hane_color2",
+"Hane_posi0",
+"Hane_posi1",
+"HaneScale_meter",
+"Hane_reversal",
+"HaneY_meter"
+],
+"pe": [
+"Tail_menu",
+"Tail_color0",
+"Tail_color1",
+"Tail_color2",
+"Tail_posi0",
+"Tail_reversal",
+"TailScale_meter"
+],
+"ga": [
+"EmotionManualAuto_check"
+],
+"gb": [
+"Ahegao_check",
+"ESituation_menu",
+"KandoSet_meter",
+"NamidaSet_meter",
+"ikiSet_meter"
+],
+"gc": [
+"HeartPlus_meter",
+"HeartMinus_meter"
+],
+"gd": [
+"EyeOption_visible"
+],
+"ge": [
+"EmotionOption_visible"
+],
+"gh": [
+"EmotionOption_reversal"
+],
+"gf": [
+"Hukidashi_menu"
+],
+"gg": [
+"defoEye_menu",
+"defoEye_color0",
+"defoEyeScale_meter",
+"defoEyeX_meter",
+"defoEyeY_meter",
+"defoEye_reversal"
+],
+"ha": [
+"EmotionEyeLeft_meter",
+"EmotionEyeRight_meter"
+],
+"hb": [
+"EyeballXMove_meter",
+"EyeballXMove_reversal",
+"EyeballYMove_meter",
+"EyeballWidth_meter",
+"EyeballWidthRight_meter",
+"EyeballXMoveRight_meter",
+"EyeballYMoveRight_meter"
+],
+"hc": [
+"EmotionEyebrowLeft_menu",
+"EyebrowRotationLeft_meter",
+"EyebrowMoveLeft_meter",
+"EmotionEyebrowRight_menu",
+"EyebrowRotationRight_meter",
+"EyebrowMoveRight_meter",
+"EyebrowMoveHorizontalLeft_meter",
+"EyebrowMoveHorizontalRight_meter"
+],
+"hd": [
+"EmotionMouth_menu",
+"EmotionMouth_reversal",
+"MouthWidth_meter",
+"MouthHeight_meter",
+"MouthSen_menu",
+"MouthYMove_meter",
+"MouthXMove_meter",
+"MouthRotation_meter",
+"EmotionMouth_visible",
+"MouthSen_color0"
+],
+"f": [
+"CharaLoadScalenum_meter",
+"CharaLoadReversalDepthnum_depth",
+"CharaLoadRotationnum_meter",
+"CharaLoadXnum_meter",
+"CharaLoadYnum_meter",
+"CharaLoadScaleYnum_meter",
+"CharaLoadSwfColornum_swfMenu",
+"CharaLoadSwfColornum_swfSen",
+"CharaLoadSwfColornum_swfColor",
+"CharaLoadScaleBnum_meter",
+"CharaLoadAlphanum_meter",
+"CharaLoadAddnum_add0",
+"CharaLoadReversalDepthnum_reversal",
+"CharaLoadFineXnum_meter",
+"CharaLoadFineYnum_meter"
+],
+"ia": [
+"Seihuku_menu",
+"Seihuku_color0",
+"Seihuku_color1",
+"Seihuku_color2",
+"Seihuku_g0",
+"SeihukuLeftArm_menu",
+"SeihukuLeftArm_color0",
+"SeihukuLeftArm_color1",
+"SeihukuRightArm_menu",
+"SeihukuRightArm_color0",
+"SeihukuRightArm_color1",
+"SeihukuBreastOption_menu",
+"SeihukuBreastOption_color0",
+"SeihukuBreastOption_color1",
+"SeihukuBreastOption_color2",
+"SeihukuBreastOption_reversal2",
+"SeihukuDouOption_menu",
+"SeihukuDouOption_color0",
+"SeihukuDouOption_color1",
+"SeihukuDouOption_color2",
+"SeihukuDouOption_number"
+],
+"ib": [
+"Ysyatu_menu",
+"Ysyatu_color0",
+"Ysyatu_color1",
+"Ysyatu_color2",
+"Ysyatu_g0",
+"Ysyatu_g1",
+"Ysyatu_g2",
+"YsyatuDou_menu",
+"YsyatuLeftArm_menu",
+"YsyatuLeftArm_color0",
+"YsyatuLeftArm_color1",
+"YsyatuRightArm_menu",
+"YsyatuRightArm_color0",
+"YsyatuRightArm_color1",
+"YsyatuSkirt_menu",
+"YsyatuBreastOption_menu",
+"YsyatuBreastOption_color0",
+"YsyatuBreastOption_color1",
+"YsyatuBreastOption_color2",
+"YsyatuBreastOption_reversal2",
+"YsyatuOption_menu",
+"YsyatuOption_number",
+"YsyatuDouOption_menu",
+"YsyatuDouOption_color0",
+"YsyatuDouOption_color1",
+"YsyatuDouOption_color2",
+"YsyatuDouOption_number"
+],
+"id": [
+"Tsyatu_menu",
+"Tsyatu_color0",
+"Tsyatu_color1",
+"Tsyatu_color2",
+"Tsyatu_g0",
+"Tsyatu_g1",
+"TsyatuDou_menu",
+"TsyatuLeftArm_menu",
+"TsyatuLeftArm_color0",
+"TsyatuLeftArm_color1",
+"TsyatuRightArm_menu",
+"TsyatuRightArm_color0",
+"TsyatuRightArm_color1",
+"TsyatuSkirt_menu",
+"TsyatuBreastOption_menu",
+"TsyatuBreastOption_color0",
+"TsyatuBreastOption_color1",
+"TsyatuBreastOption_color2",
+"TsyatuBreastOption_reversal2",
+"TsyatuDouOption_menu",
+"TsyatuDouOption_color0",
+"TsyatuDouOption_color1",
+"TsyatuDouOption_color2",
+"TsyatuDouOption_number"
+],
+"if": [
+"Vest_menu",
+"Vest_color0",
+"Vest_color1",
+"Vest_color2",
+"VestDou_menu",
+"VestLeftArm_menu",
+"VestLeftArm_color0",
+"VestLeftArm_color1",
+"VestRightArm_menu",
+"VestRightArm_color0",
+"VestRightArm_color1",
+"Vest_g0",
+"Vest_g1",
+"VestSkirt_menu",
+"VestBreastOption_menu",
+"VestBreastOption_color0",
+"VestBreastOption_color1",
+"VestBreastOption_color2",
+"VestBreastOption_reversal2",
+"VestDouOption_menu",
+"VestDouOption_color0",
+"VestDouOption_color1",
+"VestDouOption_color2",
+"VestDouOption_number"
+],
+"ic": [
+"Skirt_menu",
+"Skirt_color0",
+"Skirt_color1",
+"Skirt_color2",
+"Skirt_depth"
+],
+"jc": [
+"Tights_menu",
+"Tights_color0",
+"Tights_color1",
+"Tights_color2",
+"Tights_depth"
+],
+"ie": [
+"Zubon_menu",
+"Zubon_color0",
+"Zubon_color1",
+"Zubon_color2",
+"ZubonAshi0_menu",
+"ZubonAshi0_color0",
+"ZubonAshi0_color1",
+"ZubonAshi0_color2",
+"ZubonAshi1_menu",
+"ZubonAshi1_color0",
+"ZubonAshi1_color1",
+"ZubonAshi1_color2",
+"Zubon_depth"
+],
+"ja": [
+"Socks0_menu",
+"Socks0_color0",
+"Socks0_color1",
+"Socks0_color2"
+],
+"jb": [
+"Socks1_menu",
+"Socks1_color0",
+"Socks1_color1",
+"Socks1_color2"
+],
+"jf": [
+"LegBand0_menu",
+"LegBand0_color0",
+"LegBand0_color1",
+"LegBand0_color2"
+],
+"jg": [
+"LegBand1_menu",
+"LegBand1_color0",
+"LegBand1_color1",
+"LegBand1_color2"
+],
+"jd": [
+"Kutu0_menu",
+"Kutu0_color0",
+"Kutu0_color1",
+"Kutu0_color2",
+"KutuLong0_menu",
+"KutuLong0_color0",
+"KutuLong0_color1",
+"KutuLong0_color2"
+],
+"je": [
+"Kutu1_menu",
+"Kutu1_color0",
+"Kutu1_color1",
+"Kutu1_color2",
+"KutuLong1_menu",
+"KutuLong1_color0",
+"KutuLong1_color1",
+"KutuLong1_color2"
+],
+"ka": [
+"Bura_menu",
+"Bura_color0",
+"Bura_color1",
+"Bura_color2",
+"Bura_separate"
+],
+"kb": [
+"Pantu_menu",
+"Pantu_color0",
+"Pantu_color1",
+"Pantu_color2",
+"Pantu_depth"
+],
+"kf": [
+"Nawa_menu",
+"Nawa_color0",
+"Nawa_color1",
+"Nawa_color2"
+],
+"kg": [
+"Vibrator_menu",
+"Vibrator_color0",
+"Vibrator_color1",
+"Vibrator_color2",
+"VibratorMove_menu",
+"VibratorSpeed_menu",
+"VibratorMove_count",
+"VibratorMove_turn",
+"VibratorSpeed_turn",
+"VibratorMove_turn2",
+"VibratorScale_meter",
+"VibratorThrough_check",
+"VibratorAlpha_meter"
+],
+"kc": [
+"NippleGLeft_menu",
+"NippleGLeft_color0",
+"NippleGLeft_color1",
+"NippleGLeftSize_meter",
+"NippleGLeft_color2"
+],
+"kd": [
+"NippleGRight_menu",
+"NippleGRight_color0",
+"NippleGRight_color1",
+"NippleGRightSize_meter",
+"NippleGRight_color2"
+],
+"ke": [
+"SG_menu",
+"SG_color0",
+"SG_color1",
+"SGSize_meter",
+"SG_color2"
+],
+"la": [
+"Hat_menu",
+"Hat_color0",
+"Hat_color1",
+"Hat_color2",
+"Hat_reversal",
+"Hat_hair0",
+"Hat_hair1",
+"Hat_hair2",
+"Hat_hair3",
+"Hat_hair4"
+],
+"lb": [
+"Megane_menu",
+"Megane_color0",
+"Megane_color1",
+"Megane_color2",
+"Megane_reversal",
+"Megane_g0",
+"MeganeY_meter",
+"Megane_depth"
+],
+"lc": [
+"Headband_menu",
+"Headband_color0",
+"Headband_color1",
+"Headband_color2",
+"Headband_depth"
+],
+"m": [
+"Ri",
+"pr"
+],
+"n": [
+"Hairpinnum_menu",
+"Hairpinnum_color0",
+"Hairpinnum_color1",
+"Hairpinnum_color2",
+"Hairpinnum_reversal2",
+"HairpinScalenum_meter",
+"HairpinRotationnum_meter",
+"HairpinXnum_meter",
+"HairpinYnum_meter",
+"HairpinLinenum_menu",
+"HairpinLinenum_color0",
+"HairpinScaleYnum_meter",
+"HairpinScaleBnum_meter"
+],
+"oa": [
+"Gag_menu",
+"Gag_color0",
+"Gag_color1",
+"Gag_color2"
+],
+"os": [
+"Headphone_menu",
+"Headphone_color0",
+"Headphone_color1",
+"Headphone_color2",
+"Headphone_g0"
+],
+"ob": [
+"Earring0_menu",
+"Earring0_color0",
+"Earring0_color1",
+"Earring0_color2"
+],
+"oc": [
+"Earring1_menu",
+"Earring1_color0",
+"Earring1_color1",
+"Earring1_color2"
+],
+"od": [
+"Collar_menu",
+"Collar_color0",
+"Collar_color1",
+"Collar_color2",
+"Collar_g0",
+"Collar_depth"
+],
+"oe": [
+"Necklace_menu",
+"Necklace_color0",
+"Necklace_color1",
+"Necklace_color2",
+"Necklace_depth"
+],
+"of": [
+"Necktie_menu",
+"Necktie_color0",
+"Necktie_color1",
+"Necktie_color2",
+"Necktie_g0"
+],
+"snum": [
+"Beltnum_menu",
+"Beltnum_color0",
+"Beltnum_color1",
+"Beltnum_color2",
+"Beltnum_reversal2",
+"BeltScalenum_meter",
+"BeltRotationnum_meter",
+"BeltXnum_meter",
+"BeltYnum_meter",
+"Beltnum_depth",
+"BeltExtranum_menu",
+"Beltnum_mask",
+"BeltScaleYnum_meter",
+"BeltLinenum_menu",
+"BeltLinenum_color0",
+"BeltScaleBnum_meter",
+"BeltAlphanum_meter",
+"BeltFineXnum_meter",
+"BeltFineYnum_meter"
+],
+"og": [
+"Wristband0_menu",
+"Wristband0_color0",
+"Wristband0_color1",
+"Wristband0_color2"
+],
+"oh": [
+"Wristband1_menu",
+"Wristband1_color0",
+"Wristband1_color1",
+"Wristband1_color2"
+],
+"oo": [
+"Armband0_menu",
+"Armband0_color0",
+"Armband0_color1",
+"Armband0_color2"
+],
+"op": [
+"Armband1_menu",
+"Armband1_color0",
+"Armband1_color1",
+"Armband1_color2"
+],
+"oq": [
+"Bracelet0_menu",
+"Bracelet0_color0",
+"Bracelet0_color1",
+"Bracelet0_color2"
+],
+"or": [
+"Bracelet1_menu",
+"Bracelet1_color0",
+"Bracelet1_color1",
+"Bracelet1_color2"
+],
+"om": [
+"ArmBracelet0_menu",
+"ArmBracelet0_color0",
+"ArmBracelet0_color1",
+"ArmBracelet0_color2"
+],
+"on": [
+"ArmBracelet1_menu",
+"ArmBracelet1_color0",
+"ArmBracelet1_color1",
+"ArmBracelet1_color2"
+],
+"ok": [
+"Elbowpad0_menu",
+"Elbowpad0_color0",
+"Elbowpad0_color1",
+"Elbowpad0_color2"
+],
+"ol": [
+"Elbowpad1_menu",
+"Elbowpad1_color0",
+"Elbowpad1_color1",
+"Elbowpad1_color2"
+],
+"oi": [
+"Glove0_menu",
+"Glove0_color0",
+"Glove0_color1",
+"Glove0_color2",
+"GloveLength0_menu"
+],
+"oj": [
+"Glove1_menu",
+"Glove1_color0",
+"Glove1_color1",
+"Glove1_color2",
+"GloveLength1_menu"
+],
+"ad": [
+"Breast_Left_Up_check",
+"Breast_Right_Up_check",
+"Breast_Left_Sayuu_check",
+"Breast_Right_Sayuu_check",
+"Nipple_Left_Up_check",
+"Nipple_Right_Up_check",
+"Nipple_Left_Sayuu_check",
+"Nipple_Right_Sayuu_check",
+"sClick_check",
+"Kiss_check"
+],
+"ae": [
+"BreastManualAuto_check",
+"BreastLeft_menu",
+"BreastRight_menu",
+"NippleLeft_menu",
+"NippleRight_menu"
+],
+"anum": [
+"FreeHandnum_menu",
+"FreeHandnum_reversal",
+"FreeHandnum_color0",
+"FreeHandnum_depth",
+"FreeHandAlphanum_meter",
+"FreeHandScalenum_meter",
+"FreeHandRotationnum_meter",
+"FreeHandXnum_meter",
+"FreeHandYnum_meter",
+"FreeHandDepthnum_meter",
+"FreeHandWristnum_menu",
+"FreeHandWristRotationnum_meter",
+"FreeHandWidthnum_meter",
+"FreeHandFineXnum_meter",
+"FreeHandFineYnum_meter"
+],
+"b": [
+"FreeHandItemnum_menu",
+"FreeHandItemnum_color0",
+"FreeHandItemnum_color1",
+"FreeHandItemnum_color2"
+],
+"c": [
+"FreeHandVestnum_menu",
+"FreeHandVestnum_color0",
+"FreeHandVestnum_color1",
+"FreeHandVestnum_color2"
+],
+"d": [
+"FreeHandWristbandnum_menu",
+"FreeHandWristbandnum_color0",
+"FreeHandWristbandnum_color1",
+"FreeHandWristbandnum_color2"
+],
+"w": [
+"FreeRibonnum_menu",
+"FreeRibonnum_reversal",
+"FreeRibonnum_color0",
+"FreeRibonnum_color1",
+"FreeRibonnum_color2",
+"FreeRibonnum_depth",
+"FreeRibonScalenum_meter",
+"FreeRibonLinenum_menu",
+"FreeRibonLinenum_color0",
+"FreeRibonRotationnum_meter",
+"FreeRibonXnum_meter",
+"FreeRibonYnum_meter",
+"FreeRibonDepthnum_meter",
+"FreeRibonScaleYnum_meter",
+"FreeRibonScaleBnum_meter",
+"FreeRibonnum_shadow",
+"FreeRibonAlphanum_meter",
+"FreeRibonFineXnum_meter",
+"FreeRibonFineYnum_meter"
+],
+"x": [
+"FreeBeltnum_menu",
+"FreeBeltnum_reversal",
+"FreeBeltnum_color0",
+"FreeBeltnum_color1",
+"FreeBeltnum_color2",
+"FreeBeltnum_depth",
+"FreeBeltScalenum_meter",
+"FreeBeltScaleYnum_meter",
+"FreeBeltLinenum_menu",
+"FreeBeltLinenum_color0",
+"FreeBeltRotationnum_meter",
+"FreeBeltXnum_meter",
+"FreeBeltYnum_meter",
+"FreeBeltDepthnum_meter",
+"FreeBeltExtranum_menu",
+"FreeBeltScaleBnum_meter",
+"FreeBeltAlphanum_meter",
+"FreeBeltFineXnum_meter",
+"FreeBeltFineYnum_meter"
+],
+"e": [
+"FreeChairnum_menu",
+"FreeChairnum_reversal",
+"FreeChairnum_color0",
+"FreeChairnum_color1",
+"FreeChairnum_color2",
+"FreeChairnum_depth",
+"FreeChairnum_depth2",
+"FreeChairLinenum_menu",
+"FreeChairLinenum_color0",
+"FreeChairScalenum_meter",
+"FreeChairRotationnum_meter",
+"FreeChairXnum_meter",
+"FreeChairYnum_meter",
+"FreeChairDepthnum_meter",
+"FreeChairExtranum_menu",
+"FreeChairAlphanum_meter",
+"FreeChairFineXnum_meter",
+"FreeChairFineYnum_meter"
+],
+"y": [
+"FreeFlagnum_menu",
+"FreeFlagnum_depth",
+"FreeFlagScalenum_meter",
+"FreeFlagScaleYnum_meter",
+"FreeFlagRotationnum_meter",
+"FreeFlagXnum_meter",
+"FreeFlagYnum_meter",
+"FreeFlagDepthnum_meter",
+"FreeFlagExtranum_menu",
+"FreeFlagScaleBnum_meter"
+],
+"z": [
+"FreeHukidashinum_menu",
+"FreeHukidashinum_reversal",
+"FreeHukidashinum_color0",
+"FreeHukidashinum_color1",
+"FreeHukidashinum_color2",
+"FreeHukidashinum_depth",
+"FreeHukidashiScalenum_meter",
+"FreeHukidashiScaleYnum_meter",
+"FreeHukidashiLinenum_menu",
+"FreeHukidashiLinenum_color0",
+"FreeHukidashiRotationnum_meter",
+"FreeHukidashiXnum_meter",
+"FreeHukidashiYnum_meter",
+"FreeHukidashiDepthnum_meter",
+"FreeHukidashiAlphanum_meter",
+"FreeHukidashiBlendnum_menu",
+"FreeHukidashiScaleBnum_meter",
+"FreeHukidashiExtranum_visible",
+"FreeHukidashiExtranum_menu",
+"FreeHukidashiExtranum_reversal",
+"FreeHukidashiExtraLinenum_menu",
+"FreeHukidashiExtraScalenum_meter",
+"FreeHukidashiExtraScaleYnum_meter",
+"FreeHukidashiExtraRotationnum_meter",
+"FreeHukidashiExtraXnum_meter",
+"FreeHukidashiExtraYnum_meter"
+],
+"ua": [
+"Background_menu",
+"Background_color0",
+"Background_color1",
+"Background_color2",
+"BgY_meter"
+],
+"uf": [
+"BgFloor_menu",
+"BgFloor_color0",
+"BgFloor_color1",
+"BgFloor_color2"
+],
+"ue": [
+"BgFront_menu",
+"BgFront_color0",
+"BgFront_color1",
+"BgFront_color2"
+],
+"ub": [
+"Mob_menu"
+],
+"v": [
+"LoadScalenum_meter",
+"LoadReversalDepthnum_depth",
+"LoadRotationnum_meter",
+"LoadXnum_meter",
+"LoadYnum_meter",
+"LoadSizenum_check",
+"LoadScaleYnum_meter",
+"LoadSwfColornum_swfMenu",
+"LoadSwfColornum_swfSen",
+"LoadSwfColornum_swfColor",
+"LoadScaleBnum_meter",
+"LoadAlphanum_meter",
+"LoadAddnum_add0",
+"LoadReversalDepthnum_reversal",
+"LoadFineXnum_meter",
+"LoadFineYnum_meter"
+],
+"ud": [
+"Mosaic_menu",
+"Mosaic_color0"
+],
+"ug": [
+"SoundVolume_meter",
+"SoundPan_check"
+],
+"uc": [
+"Zoom_meter",
+"Zoom_x",
+"Zoom_y"
+]
+}
