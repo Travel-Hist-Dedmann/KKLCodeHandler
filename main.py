@@ -1,20 +1,28 @@
 import re 
-from json import load as jsonLoad 
+from json import load as jsonLoad, dump as jsondump 
+from csv import reader, writer
+from operator import itemgetter
+
 
 def KKLcode_to_Dict(input:str)->dict[dict[str]]:
+    with open("KKL_Menu_names.json","r") as file:
+        KKL_Menu_Names =  jsonLoad(fp = file)
     with open("KKL_Parts_Names.json","r") as file:
         KKL_Parts_Names =  jsonLoad(fp = file)
     #put part values in ths dictionary
     operant_dict:dict = {}
-
     #String allcode handling is future
-
+    KKL_Menu_Names_reversed:dict ={}
+    for  key,value in KKL_Menu_Names.items():     
+        for i in value:
+                KKL_Menu_Names_reversed[i] = key 
     
     #Version handling
     version_index:int = input.find("**") + 1
     version:str = input[:version_index]
     input:str = input.lstrip(version)
-    operant_dict["ver"] = version.rstrip("**")
+    name_dict:dict = dict()
+    operant_dict["ver"] = {"ver":{"ver":version.rstrip("**")}}
 
     #Imported image handling
     importObjects_regex:re = re.compile(r"/#].+",re.DOTALL)
@@ -29,75 +37,67 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     #Split @input by "_" into operant_list
     operant_list:list[str]  = re.split("[_]",input)
 
-
+    
     alphaNum_regex = re.compile(r"[a-z]{1,2}[0-9]+|[a-z]{2}")
     for i in operant_list:
         count_iter += 1
         alphaNum:str = re.findall(alphaNum_regex,i)[0]
-
         #if the part value is alphabet + number, change into alphabet + "." + number
-        if alphaNum.isalpha()==False:
-            
-            alpha = re.findall(r"[a-z]{1,2}",alphaNum)[0]
+        
+        if alphaNum.isalpha() == False:    
+            alpha = re.findall(r"[a-z]+",alphaNum)[0]
             num   = re.findall(r"[0-9]+",alphaNum)[0]
-
             match alpha:
+                #These are of the form [a-z]{1}[0-9]{1}[0-9]+
                 case "r"|"m"|'t'|'s'|'a'|'b'|'c'|'d'|'w'|'x'|'e'|'y'|'z'|'v':
-                    num1,num2 = num[:1],num[2:]
-                    dot_added_alphaNumeric = f"{alpha}.{num1}.{num2}"
+                    num1,num2 = num[:2],num[2:]
+                    dot_added_alphaNumeric = f"{alpha}{num1}.{num2}"
                     i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                 case _:
                     dot_added_alphaNumeric = f"{alpha}.{num}"
                     i:str = i.replace(alphaNum,dot_added_alphaNumeric)
-        #Split element i of operant list by "."    
+        else:
+            alpha = alphaNum
+            #Split element i of operant list by "."    
         i = i.split(".")
         
-        part_dict_name:str = i[0]
+        part_dict_name:str = alpha
         part_vals:list = i[1:]
-        
-        #matches:
-    
-    
-
-        
-        #Part val_names must be replaced with KKL codenames.
-        
-        
+          
         part_val_names = KKL_Parts_Names[part_dict_name][:]
+         
         
         if part_vals == []:
-            operant_dict[part_dict_name] = dict.fromkeys(part_val_names,"")
+            name_dict[part_dict_name] = dict.fromkeys(part_val_names,"")
         else:
-            operant_dict[part_dict_name] = dict(zip(part_val_names,part_vals))  
+            name_dict[part_dict_name] = dict(zip(part_val_names,part_vals))
+        
+        
+
+    for menukey in KKL_Menu_Names.keys():
+        operant_dict[menukey] = {key:val for key,val in name_dict.items() if key in KKL_Menu_Names[menukey]} 
+       
     #End of for loop
-    """for x in KKL_Parts_Names.keys(): 
-        if x not in operant_dict.keys():
-            operant_dict[x] = dict.fromkeys(KKL_Parts_Names[x],"")
-      """
         
     if not(importObjectsAddress==""):
-        operant_dict["importObjects"] = importObjectsAddress 
+        operant_dict["importObjects"] = {{"importObjects":importObjectsAddress}} 
     
-    #operant_list:list[list[str]] = [re.split("[.]",x) for x in operant_list] 
     
-
     output_dict:dict[dict[str]] = operant_dict.copy()
 
-    
     return output_dict
 
-
-
-def dict_to_KKLCode(input:dict[dict[str]])->str:
-        operant_dict:dict[dict[str]] = input.copy()
-        Version     = operant_dict["ver"] 
+def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
+        operant_dict:dict[dict[dict[str]]] = input.copy()
+        Version     = operant_dict["ver"]["ver"]["ver"]
         del operant_dict["ver"]
         
         output:str  = ''
-        for (partname,part_values) in operant_dict.items():
+        for values in operant_dict.values():
+            for partname,part_values in values.items():
             
-            part_string:str  = ".".join([x for x in part_values.values() if x !=""])
-            output      += partname+ part_string + "_"
+                part_string:str  = ".".join([x for x in part_values.values() if x !=""])
+                output      += partname+ part_string + "_"
 
        
         #match Version_ then atleast 2 digits
@@ -108,93 +108,145 @@ def dict_to_KKLCode(input:dict[dict[str]])->str:
 
 class KKLCodeCovertor_Object:
              
-    def __init__(self,compare:str) -> None:
+    def __init__(self,compare:str,names_list:list[str],convert_list:list[str]) -> None:
         
-        """For future
-        ,names_list:list[str],convert_list:list[str]
-        self.dict:dict[dict[str]] = {}
+        self.convertdict:dict[dict[dict[dict[str]]]] = {}
         for index,name in enumerate(names_list):
-            self.dict[name] = KKLcode_to_Dict(convert_list[index])
-        """    
-            
+            print(name)
+            self.convertdict[name] = KKLcode_to_Dict(convert_list[index])
         
         self.compare:str = compare
         self.comparedict:dict = KKLcode_to_Dict(self.compare)
 
+
         with open("KKL_Menu_names.json","r") as file:
             self.KKL_Menu_Names =  jsonLoad(fp = file)
-        Menunames:dict[str] = self.KKL_Menu_Names.copy()
+        
+
         with open("KKL_Parts_Names.json","r") as file:
             self.KKL_Parts_Names =  jsonLoad(fp = file)
-        Partnames:dict[list[str]] = self.KKL_Parts_Names.copy()
         
         
-        self.Menu_and_Part_names  = {}
-        for keys in Menunames.keys():
-            self.Menu_and_Part_names[keys] = dict.fromkeys(Menunames[keys],'')
-            for valkey in self.Menu_and_Part_names[keys].keys():
-                try:
-                    self.Menu_and_Part_names[keys][valkey] = Partnames[valkey]
-                except KeyError:
-                    pass
+
     
 
-    def create_covertor(self):
+    
+
+    def convert(self):
         
-        keys:set[str] = set()
-        self.help()
-        temp_comma_sep_String:str= ",".join(self.Menu_and_Part_names.keys())
+        #Get the dictionaries
+        convert_objects_dict:dict = self.convertdict
+        compare_dict:dict = self.comparedict.copy()
+        
+        #Cleaning the comapare_dict of empty values. And removing version.
+        
+        compare_dict.pop("ver")
+        
+        #get list of changes.
+        menulist:set[str] = set()
+        menuOptions:list[str] = list()
+        partOptions:list[str] = list()
+        labelOptions:list[str] = list()
+        
        
-        Run = True
-        print("1) Choose whate you want to covert")
-        while Run :
-            print(keys) if len(keys)>0 else ""
-            key = input("1a)Please enter a single Part menu from list. Leave blank or type exit to exit.")
-            if key == "" or key.lower()== "exit": 
-                Run = False 
-                break
-            
-            key_regex = re.findall(r"[a-z0-9]*"+key+r"[a-z0-9]*",temp_comma_sep_String,re.IGNORECASE)
-            match len(key_regex):
-                case 0:
-                    print("1)No match")
-                    self.help()
-                case 1:
-                    keys.add(key_regex[0])
-                    
-                case _:
-                    print(list(enumerate(key_regex)))
-                    choice = input("1b) Please choose a part by it's index number, or leave blank/type non numbers to restart.")
-                    if choice == "" or not choice.isnumeric():
-                        continue
-                    keys.add(key_regex[int(choice)])
-
-
-
-        print(keys)
-        change_dict:dict[dict[str]] = {}
+        #Break dictionary into 3 ordered lists
+   
+        for menukey,menuvalue in compare_dict.items():
+            if bool(menuvalue):  
+                menuOptions.append([menukey])
+            for partkey,partvalue in menuvalue.items():
+                if bool(partvalue):
+                    partOptions.append([menukey,partkey])
+                for labelkey,labelvalue in partvalue.items():
+                    if bool(labelvalue):
+                        labelOptions.append([menukey,partkey,labelkey])           
+                                    
         
-        for element in keys:
-            print(f"For {element}")
-            for x in self.Menu_and_Part_names[element].keys():
+        def regsearch(Options:list[str],list_length:int,inputname:str = "menu"):    
+            menu_excluded = []
+            Options_clean = list(map(itemgetter(list_length),Options))
+            iter = 0
+            while len(Options_clean)>iter:
+                print(menu_excluded)
+                iter+=1 
+                menuInput = input(f"""1){Options}  
+                                Choose {inputname} names. """)
+                if menuInput =="":
+                    break
                 
-                if x in set(self.comparedict)and self.comparedict[x] != None and '' not in self.comparedict[x].values() :
-                    change_dict[x] = self.comparedict[x]
-                    self.search(x,"2a)Please select part from list.","2b)Select value label","2)Please choose value",change_dict)
-                else:
-                    print("2)No such part exists,skipped.")
-        
-        compare_dict = self.comparedict
-        for x,y in change_dict.items():
-            compare_dict[x] = y             
-        
-        convertstring:str = dict_to_KKLCode(compare_dict)
-        print(convertstring)
-        return convertstring           
-                   
-
-
+                menuregex = re.findall(r"[a-z0-9_]{0,}"+menuInput+r"[a-z0-9_]{0,}","~".join(Options_clean),re.IGNORECASE) 
+                if menuregex == []:  
+                    print("Value not found.")
+                    iter-=1
+                    continue
+                while len(menuregex)>0:    
+                    menu_choice = input(f""" {list(enumerate(menuregex,start=1))}
+                    Choose option by index(integer only): """)
+                    if menu_choice == "" or not menu_choice.isnumeric() or int(menu_choice)>len(menuregex):
+                        print("Input Outside of expected value, restart." )
+                        iter-=1
+                        break
+                    menu_choice = menuregex.pop(int(menu_choice)-1)
+                    
+                    #Regex helper
+                    remove_index = Options_clean.index(menu_choice)
+                    Options_clean.pop(remove_index)
+                    Options.pop(remove_index)
+                    menu_excluded.append(menu_choice)
+                    
+                    
+                    
                         
+                        
+                
+            
+            return menu_excluded
+        #cleaning the lists
+        
+        menu_exclude = regsearch(menuOptions,0,"menu")
+        print(menu_exclude)
+        
+        [partOptions.remove(x) for x in partOptions[:] if x[0] not in menu_exclude]
+        
+        
+        part_exclude = regsearch(partOptions,1,"part")
+        print(part_exclude)
+        
+        [labelOptions.remove(x) for x in labelOptions[:] if x[1] not in part_exclude]        
+
+        label_exclude = regsearch(labelOptions,2,"label")
+        print(label_exclude)    
+
+
+         
+        menuOptions =  [x for x in list(map(itemgetter(0),menuOptions)) if x not in menu_exclude]
+        partOptions =  [x for x in list(map(itemgetter(1),partOptions)) if x not in part_exclude]
+        labelOptions = [x for x in list(map(itemgetter(2),labelOptions)) if x not in label_exclude]
+        
+      
+        
+        
+        list_of_strings = []      
+        for key in self.convertdict.keys():
+            for menukey,menuvalue in compare_dict.items():
+                if menukey in menuOptions:  
+                    convert_objects_dict[key][menukey] = compare_dict[menukey]
+                for partkey,partvalue in menuvalue.items():
+                    if partkey in partOptions:
+                        convert_objects_dict[key][menukey][partkey] = compare_dict[menukey][partkey]
+                    for labelkey,labelvalue in partvalue.items():
+                        if labelkey in labelOptions:
+                            convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
+                                    
+            list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
+            
+        return list_of_strings
+
+
+
+
+
+
                               
     def help(self,*tablist:tuple[str])->None:
         if tablist ==():
@@ -211,50 +263,32 @@ Options:
                 print(self.Menu_and_Part_names[index])
 
 
-    def search(self,iter,input1:str,input2:str,input3:str,dict:dict[dict[str]]) ->dict[dict[str]]:
-        Running = True
-        change_list:set[dict:str] = set()
-        if iter in list(dict):
-            print(list(dict[iter]))
-            while Running :
-                print(change_list) if len(change_list)>0 else ""
-                
-                part = input(input1 + "Type Exit or leave plank to exit this loop")
-                if part == "" or part.lower()== "exit": 
-                    Running = False 
-                    break
-                
-                part_regex = re.findall(r"[a-z0-9_\-]*"+part+r"[_\-a-z0-9]*",",".join(list(dict[iter])),re.IGNORECASE)
-                match len(part_regex):
-                    case 0:
-                        print("No match")
-                        print(list(dict.values()))
-                    case 1:
-                        change_list.add(part_regex[0])
-                        
-                    case _:
-                        print(list(enumerate(part_regex)))
-                        choice = input(input2 + "Type Non numeric or leave blank to skip this.")
-                        if choice == "" or not choice.isnumeric():
-                            continue
-                        else:    
-                            change_list.add(part_regex[int(choice)])
-            print(change_list)
-            
-            for item in change_list:
-                print(f"{item}: {dict[iter][item]}")
-                changevalue = input(input3)
-                dict[iter][item] = changevalue
-            return dict.copy()
+with open("KKLcode loader and dumper.csv","r",newline="") as f:
+    file = reader(f,delimiter=",")
+    header = next(file)
+    rows = []
+    Id,names,codes,output,convertor_list =[],[],[],[],[] 
+    for i in file:
+        rows.append(i)
 
-def main():
-    
-    code = input("Your convertor string here.")
+Id = list(map(itemgetter(0),rows))
+names= list(map(itemgetter(1),rows))
+codes= list(map(itemgetter(2),rows))
+output = list(map(itemgetter(3),rows))
+convertor_list= list(map(itemgetter(4),rows))
+convertor = convertor_list[0]
 
-    code_convertor = KKLCodeCovertor_Object(code)
 
-    string = code_convertor.create_covertor()
 
-    input()
+working_Object = KKLCodeCovertor_Object(convertor,names,codes)
 
-main()
+output = working_Object.convert()
+
+out = list(zip(Id,names,codes,output,convertor_list))
+print(out)
+with open("KKLcode loader and dumper.csv","w",newline="") as f:
+    rows = writer(f,dialect="excel",delimiter=",")
+    rows.writerow(header)
+    rows.writerows(out)
+
+
