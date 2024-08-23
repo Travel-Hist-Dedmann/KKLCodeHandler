@@ -98,7 +98,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
         if part_vals == []:
             
             name_dict[alphaNum] = dict.fromkeys(part_val_names,"")
-            print(alphaNum)
+            
         else:
             name_dict[alphaNum] = dict(zip(part_val_names,part_vals))
             
@@ -274,9 +274,7 @@ class KKLCodeCovertor_Object:
         menuOptions =  [x for x in list(map(itemgetter(0),menuOptions)) if x not in menu_exclude]
         partOptions =  [x for x in list(map(itemgetter(1),partOptions)) if x not in part_exclude]
         labelOptions = [x for x in list(map(itemgetter(2),labelOptions)) if x not in label_exclude]
-        print("Menu",menuOptions)
-        print("Part",partOptions)
-        print("Labeleye",labelOptions)
+      
        
         
         list_of_strings = []      
@@ -300,11 +298,11 @@ class KKLCodeCovertor_Object:
                             convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
                         
                             
-                            print(labelkey)
+                            
             convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
             convert_objects_dict[key].update({"ver":version})
             list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
-            print(count)
+            
 
         return list_of_strings
 
