@@ -100,7 +100,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
        
     #End of for loop
         
-    if not(importObjectsAddress==""):
+    if not(importObjectsAddress== None):
         operant_dict["importObjects"] = {"importObjects":{"importObjects":importObjectsAddress}} 
     
     
@@ -112,8 +112,9 @@ def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
         operant_dict:dict[dict[dict[str]]] = input.copy()
         Version     = operant_dict["ver"]["ver"]["ver"]
         del operant_dict["ver"]
-        if "importObjects" in operant_dict.keys():
+        if "importObjects" in operant_dict:
             Imported_objects = operant_dict["importObjects"]["importObjects"]["importObjects"] 
+            print("These are imported",operant_dict["importObjects"])
             del operant_dict["importObjects"]
         else:
             Imported_objects = ""
@@ -141,8 +142,8 @@ class KKLCodeCovertor_Object:
             raise ValueError("MAKE SURE INPUT IS A LIST") 
         self.convertdict:dict[dict[dict[dict[str]]]] = {}
         for index,name in enumerate(names_list):
-            print(name)
-            self.convertdict[name] = KKLcode_to_Dict(convert_list[index])
+            if bool(name):
+                self.convertdict[name] = KKLcode_to_Dict(convert_list[index])
         
         self.compare:str = compare
         self.comparedict:dict = KKLcode_to_Dict(self.compare)
@@ -164,13 +165,13 @@ class KKLCodeCovertor_Object:
     def convert(self):
         
         #Get the dictionaries
-        convert_objects_dict:dict = self.convertdict
+        convert_objects_dict:dict = self.convertdict.copy()
         compare_dict:dict = self.comparedict.copy()
         
         #Cleaning the comapare_dict of empty values. And removing version.
         
-        compare_dict.pop("ver")
-        compare_dict.pop("importObjects") if "importObjects" in compare_dict.keys() else ""
+        version = compare_dict.pop("ver")
+        importObjects = compare_dict.pop("importObjects") if "importObjects" in compare_dict else ""
         
         #get list of changes.
         
@@ -246,7 +247,7 @@ class KKLCodeCovertor_Object:
         
         [labelOptions.remove(x) for x in labelOptions[:] if x[1] not in part_exclude]        
 
-        label_exclude = regsearch(labelOptions,2,"label",True)
+        label_exclude = regsearch(labelOptions,2,"label")
         print(label_exclude)    
 
 
@@ -255,24 +256,35 @@ class KKLCodeCovertor_Object:
         partOptions =  [x for x in list(map(itemgetter(1),partOptions)) if x not in part_exclude]
         labelOptions = [x for x in list(map(itemgetter(2),labelOptions)) if x not in label_exclude]
         
-      
+        def updatedict(input_dict:dict,key1:str,key2:str = "",key3:str= ""):
+                print(True)
+                if key1 not in input_dict and bool(key1):
+                    input_dict[key1] = dict()
+                if key2 not in input_dict and bool(key2):
+                    input_dict[key1][key2] = dict()
+                if key3 not in input_dict and bool(key3):
+                    input_dict[key1][key2][key3] = dict()
         
         
         list_of_strings = []      
+        count = 0
         for key in self.convertdict.keys():
+            count+=1
             for menukey,menuvalue in compare_dict.items():
-                if menukey in menuOptions:  
+                if menukey in menuOptions: 
+                    updatedict(convert_objects_dict[key],menukey)
                     convert_objects_dict[key][menukey] = compare_dict[menukey]
                 for partkey,partvalue in menuvalue.items():
                     if partkey in partOptions:
+                        updatedict(convert_objects_dict[key],menukey,partkey)
                         convert_objects_dict[key][menukey][partkey] = compare_dict[menukey][partkey]
                     for labelkey,labelvalue in partvalue.items():
                         if labelkey in labelOptions:
+                            updatedict(convert_objects_dict[key],menukey,partkey,labelkey)
                             convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
-                                    
-            
+            convert_objects_dict[key].update({'importObjects':importObjects})
             list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
-            
+            print(count)
         return list_of_strings
 
 
@@ -317,15 +329,17 @@ convertor = convertor_list[0]
 
 working_Object = KKLCodeCovertor_Object(convertor,names,codes)
 
-print(working_Object.comparedict)
+output = working_Object.convert()
 
+out = list(zip(Id,names,codes,output,convertor_list))
 
-"""out = list(zip(Id,names,codes,output,convertor_list))
-print(out)
 with open(path.join(current_dir,"KKLcode loader and dumper.csv"),"w",newline="") as f:
     rows = writer(f,dialect="excel",delimiter=",")
     rows.writerow(header)
     rows.writerows(out)
-"""
+
+
+
+
 
 

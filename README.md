@@ -48,5 +48,5 @@ Eg:*for "foot"  typed=*
 Please give me critcism. From code improvements to advice on writing quality help docs.  
 Use it for whatever, alter it if you want.
 
-Special Thanks to KisekaeJade for the explaination of how the Save syste works, and also for stopping me from chasin deadends.
+Special Thanks to KisekaeJade for the explaination of how the Save system works, and also for stopping me from chasing deadends.
 
