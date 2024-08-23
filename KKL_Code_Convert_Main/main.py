@@ -58,11 +58,11 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                 #These are of the form [a-z]{1}[0-9]{1}[0-9]+
                 case "r"|"m"|'t'|'s'|'a'|'b'|'c'|'d'|'w'|'x'|'e'|'y'|'z'|'v'|'f':
                     num1,num2 = num[:2],num[2:]
-                    dot_added_alphaNumeric = f"{alpha}{num1}.{num2}"
+                    dot_added_alphaNumeric = f"{alpha}{num1}.{num1}.{num2}"
                     i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                     alphaNum = f"{alpha}{num1}"
                 case  'xm'|'xr':
-                    dot_added_alphaNumeric = f"{alpha}{num}"
+                    dot_added_alphaNumeric = f"{alpha}{num}.{num}"
                     i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                     alphaNum = f"{alpha}{num}"
                 case _:
@@ -138,7 +138,9 @@ def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
         output:str  = ''
         for values in operant_dict.values():
             for partname,part_values in values.items():
-                part_string:str  = ".".join([x for x in part_values.values() if x !=""])
+                joiner:list = [x for x in part_values.values() if x !=""]
+                partname = re.sub(r"[0-9]+","",partname)
+                part_string:str  = ".".join(joiner)
                 output      += partname+ part_string + "_"
 
        
@@ -272,16 +274,10 @@ class KKLCodeCovertor_Object:
         menuOptions =  [x for x in list(map(itemgetter(0),menuOptions)) if x not in menu_exclude]
         partOptions =  [x for x in list(map(itemgetter(1),partOptions)) if x not in part_exclude]
         labelOptions = [x for x in list(map(itemgetter(2),labelOptions)) if x not in label_exclude]
-        
-        def updatedict(input_dict:dict,key1:str,key2:str = "",key3:str= ""):
-                #print(True)
-                if key1 not in input_dict and bool(key1):
-                    input_dict[key1] = dict()
-                if key2 not in input_dict and bool(key2):
-                    input_dict[key1][key2] = dict()
-                if key3 not in input_dict and bool(key3):
-                    input_dict[key1][key2][key3] = dict()
-        
+        print("Menu",menuOptions)
+        print("Part",partOptions)
+        print("Labeleye",labelOptions)
+       
         
         list_of_strings = []      
         count = 0
@@ -289,18 +285,24 @@ class KKLCodeCovertor_Object:
             count+=1
             for menukey,menuvalue in compare_dict.items():
                 if menukey in menuOptions: 
-                    updatedict(convert_objects_dict[key],menukey)
                     convert_objects_dict[key][menukey] = compare_dict[menukey]
+               
+        
                 for partkey,partvalue in menuvalue.items():
+                    
                     if partkey in partOptions:
-                        updatedict(convert_objects_dict[key],menukey,partkey)
                         convert_objects_dict[key][menukey][partkey] = compare_dict[menukey][partkey]
+                    
+                       
                     for labelkey,labelvalue in partvalue.items():
+                        
                         if labelkey in labelOptions:
-                            updatedict(convert_objects_dict[key],menukey,partkey,labelkey)
                             convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
+                        
+                            
+                            print(labelkey)
             convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
-            
+            convert_objects_dict[key].update({"ver":version})
             list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
             print(count)
 
@@ -348,19 +350,18 @@ convertor = convertor_list[0]
 
 working_Object = KKLCodeCovertor_Object(convertor,names,codes)
 
-#output = working_Object.convertdict["SiegeGolem"]["Privates"]
+output = working_Object.convert()
 
 
-print( working_Object.convert())
 
-
-"""out = list(zip(Id,names,codes,output,convertor_list))
-
-with open(path.join(current_dir,"KKLcode loader and dumper.csv"),"w",newline="") as f:
-    rows = writer(f,dialect="excel",delimiter=",")
-    rows.writerow(header)
-    rows.writerows(out)"""
-
+out = list(zip(Id,names,codes,output,convertor_list))
+try:
+    with open(path.join(current_dir,"KKLcode loader and dumper.csv"),"w",newline="") as f:
+        rows = writer(f,dialect="excel",delimiter=",")
+        rows.writerow(header)
+        rows.writerows(out)
+except PermissionError:
+    input("Close the csv file or this won't work. ")
 
 
 
