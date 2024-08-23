@@ -41,7 +41,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     operant_list:list[str]  = re.split("[_]",input)
     
     
-    alphaNum_regex = re.compile(r"[a-z]{1,2}[0-9]+|[a-z]{2}")
+    alphaNum_regex = re.compile(r"^[a-z]{1,2}[0-9]+|^[a-z]{2}|^[a-z]{2}[A-Z0-9]+",re.IGNORECASE)
     for i in operant_list:
         
         alphaNum:str = re.search(alphaNum_regex,i).group()  
@@ -65,6 +65,10 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                     dot_added_alphaNumeric = f"{alpha}{num}.{num}"
                     i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                     alphaNum = f"{alpha}{num}"
+                case 'dh'|'da':
+                    alphaNum1,alphaNum2 = alphaNum[:1],alphaNum[1:]
+                    dot_added_alphaNumeric = f"{alphaNum1}.{alphaNum2}"
+                    i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                 case _:
                     dot_added_alphaNumeric = f"{alpha}.{num}"
                     i:str = i.replace(alphaNum,dot_added_alphaNumeric)
