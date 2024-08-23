@@ -207,27 +207,27 @@
 "Breast_menu"
 ],
 "qa": [
-"Tin_menu",
-"Tin_color0",
-"Tin_color1",
-"TinSize_meter",
-"TinEx_meter",
-"Tin_color2",
-"Tin_depth",
-"TinManualAuto_check",
-"TinBokki_check",
-"TinSwing_meter",
-"TinKawa_menu",
-"Tin_tClick",
-"TinSizeAuto_check",
-"TinScaleX_meter",
-"TinScaleY_meter",
-"TinOffsetX_meter",
-"TinOffsetY_meter"
+"Penis_menu",
+"Penis_color0",
+"Penis_color1",
+"PenisSize_meter",
+"PenisEx_meter",
+"Penis_color2",
+"Penis_Layerdepth",
+"PenisManualAuto_check",
+"PenisErect_check",
+"PenisSwing_meter",
+"PenisForeskin_menu",
+"Penis_tClick",
+"PenisSizeAuto_check",
+"PenisScaleX_meter",
+"PenisScaleY_meter",
+"PenisOffsetX_meter",
+"PenisOffsetY_meter"
 ],
 "qb": [
-"Tama_menu",
-"TamaSize_meter"
+"Balls_menu",
+"BallsSize_meter"
 ],
 "dc": [
 "s_sClick",
