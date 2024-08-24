@@ -41,39 +41,41 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     operant_list:list[str]  = re.split("[_]",input)
     
     
-    alphaNum_regex = re.compile(r"^[a-z]{1,2}[0-9]+|^[a-z]{2}|^[a-z]{2}[A-Z0-9]+",re.IGNORECASE)
+    alphaNum_regex = re.compile(r"^[a-zA-Z0-9]+")
+    
     for i in operant_list:
         
         alphaNum:str = re.search(alphaNum_regex,i).group()  
         #if the part value is alphabet + number, change into alphabet + "." + number
-        
-        if alphaNum.isalpha() == False and alphaNum != "":    
-            alpha = re.search(r"[a-z]{1,2}",alphaNum).group(0)
-            numa_a   = re.search(r"[0-9]+",alphaNum)
-            if numa_a != None: 
-                num = numa_a.group(0)
-            else: 
-                num = ""
-            match alpha:
-                #These are of the form [a-z]{1}[0-9]{1}[0-9]+
-                case "r"|"m"|'t'|'s'|'a'|'b'|'c'|'d'|'w'|'x'|'e'|'y'|'z'|'v'|'f':
-                    num1,num2 = num[:2],num[2:]
-                    dot_added_alphaNumeric = f"{alpha}{num1}.{num1}.{num2}"
-                    i:str = i.replace(alphaNum,dot_added_alphaNumeric)
-                    alphaNum = f"{alpha}{num1}"
-                case  'xm'|'xr':
-                    dot_added_alphaNumeric = f"{alpha}{num}.{num}"
-                    i:str = i.replace(alphaNum,dot_added_alphaNumeric)
-                    alphaNum = f"{alpha}{num}"
-                case 'dh'|'da':
-                    alphaNum1,alphaNum2 = alphaNum[:1],alphaNum[1:]
-                    dot_added_alphaNumeric = f"{alphaNum1}.{alphaNum2}"
-                    i:str = i.replace(alphaNum,dot_added_alphaNumeric)
-                case _:
-                    dot_added_alphaNumeric = f"{alpha}.{num}"
-                    i:str = i.replace(alphaNum,dot_added_alphaNumeric)
-                    alphaNum = f"{alpha}"
-        
+           
+        alpha = re.search(r"[a-z]{1,2}",alphaNum).group(0)    
+        numa_a   = re.search(r"[0-9]+",alphaNum)
+           
+        if numa_a != None: 
+            num = numa_a.group(0)
+        else: 
+            num = ""
+        match alpha:
+            #These are of the form [a-z]{1}[0-9]{1}[0-9]+
+            case "r"|"m"|'t'|'s'|'a'|'b'|'c'|'d'|'w'|'x'|'e'|'y'|'z'|'v'|'f':
+                num1,num2 = num[:2],num[2:]
+                dot_added_alphaNumeric = f"{alpha}{num1}.{num1}.{num2}"
+                i:str = i.replace(alphaNum,dot_added_alphaNumeric)
+                alphaNum = f"{alpha}{num1}"
+            case  'xm'|'xr':
+                dot_added_alphaNumeric = f"{alpha}{num}.{num}"
+                i:str = i.replace(alphaNum,dot_added_alphaNumeric)
+                alphaNum = f"{alpha}{num}"
+            case 'dh'|'da':
+                alphaNum1,alphaNum2 = alphaNum[:2],alphaNum[2:]
+                dot_added_alphaNumeric = f"{alphaNum1}.{alphaNum2}"
+                print(dot_added_alphaNumeric)
+                i:str = i.replace(alphaNum,dot_added_alphaNumeric)
+            case _:
+                dot_added_alphaNumeric = f"{alpha}.{num}"
+                i:str = i.replace(alphaNum,dot_added_alphaNumeric)
+                alphaNum = f"{alpha}"
+    
             #Split element i of operant list by "."    
         
        
