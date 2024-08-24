@@ -8,18 +8,17 @@ from os import path
 
 current_dir = path.dirname(__file__)
 def KKLcode_to_Dict(input:str)->dict[dict[str]]:
+    
     with open(path.join(current_dir,"KKL_Menu_names.json"),"r") as file:
         KKL_Menu_Names =  jsonLoad(fp = file)
+    
     with open(path.join(current_dir,"KKL_Parts_Names.json"),"r") as file:
         KKL_Parts_Names =  jsonLoad(fp = file)
+
+    
     #put part values in ths dictionary
     operant_dict:dict = {}
     #String allcode handling is future
-    KKL_Menu_Names_reversed:dict ={}
-    for  key,value in KKL_Menu_Names.items():     
-        for i in value:
-                KKL_Menu_Names_reversed[i] = key 
-    
     #Version handling
     version_index:int = input.find("**") + 1
     version:str = input[:version_index]
@@ -42,15 +41,15 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     
     
     alphaNum_regex = re.compile(r"^[a-zA-Z0-9]+")
-    
+    dict_name:str = ""
     for i in operant_list:
         
         alphaNum:str = i.split(".",maxsplit=1)[0]        #if the part value is alphabet + number, change into alphabet + "." + number
-           
-        alpha = re.search(r"[a-z]{1,2}",alphaNum).group(0)    
+        
+        alpha = re.match(r"^[a-z]{1,2}",alphaNum).group(0)    
         numa_a   = re.search(r"[0-9]+",alphaNum)
            
-        if numa_a != None: 
+        if bool(numa_a): 
             num = numa_a.group(0)
         else: 
             num = ""
@@ -61,44 +60,39 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                 dot_added_alphaNumeric = f"{alpha}{num1}.{num1}.{num2}"
                 i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                 alphaNum = f"{alpha}{num1}"
+                dict_name = f"{alpha}"
+                
             case  'xm'|'xr':
                 dot_added_alphaNumeric = f"{alpha}{num}.{num}"
                 i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                 alphaNum = f"{alpha}{num}"
+                dict_name =f"{alpha}"
             case 'dh'|'da':
+                
                 alphaNum1,alphaNum2 = alphaNum[:2],alphaNum[2:]
                 dot_added_alphaNumeric = f"{alphaNum1}.{alphaNum2}"
                 
                 i:str = i.replace(alphaNum,dot_added_alphaNumeric)
+                
+                alphaNum = f"{alphaNum1}"
+                dict_name = f"{alphaNum1}"
             case _:
                 dot_added_alphaNumeric = f"{alpha}.{num}"
                 i:str = i.replace(alphaNum,dot_added_alphaNumeric)
                 alphaNum = f"{alpha}"
+                dict_name =f"{alpha}"
     
             #Split element i of operant list by "."    
         
        
         i = i.split(".")
-        part_dict_name:str = re.sub(r"[0-9]+", "", i[0])
          
         
         part_vals:list = i[1:]
         
-        part_val_names = KKL_Parts_Names[part_dict_name][:]
+        part_val_names = KKL_Parts_Names[dict_name]
         
         #print(part_val_names)
-        """if len(part_dict_name)<=2 and len(part_dict_name)>0:    
-            
-            part_val_names = KKL_Parts_Names[part_dict_name][:]
-        elif len(part_dict_name)>2 and len(part_dict_name)<=3:
-            print(part_dict_name)
-            part_val_names = KKL_Parts_Names[part_dict_name[0]][:]
-        elif len(part_dict_name)>3:
-            print(part_dict_name)
-            part_val_names = KKL_Parts_Names[part_dict_name[0:1]][:]
-        else:
-            print("Found problem" +part_dict_name)
-            continue """
         
         if part_vals == []:
             
@@ -106,7 +100,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
             
         else:
             name_dict[alphaNum] = dict(zip(part_val_names,part_vals))
-            
+        
 
         key_regex = re.compile("[0-9]+")  # Matches one or more digits
 
@@ -131,6 +125,8 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
 
 def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
         operant_dict:dict[dict[dict[str]]] = input.copy()
+       
+        
         Version     = operant_dict["ver"]["ver"]["ver"]
         del operant_dict["ver"]
         if "importObjects" in operant_dict:
@@ -144,9 +140,28 @@ def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
         for values in operant_dict.values():
             for partname,part_values in values.items():
                 joiner:list = [x for x in part_values.values() if x !=""]
-                partname = re.sub(r"[0-9]+","",partname)
-                part_string:str  = ".".join(joiner)
-                output      += partname+ part_string + "_"
+                part_string:str = ""
+               
+                if bool(joiner) ==False:
+                    part_string:str = partname
+                else:
+                    partname_clean = re.match(r"^[a-z]{1,2}",partname).group(0)
+                    match partname_clean:
+                        case "r"|"m"|'t'|'s'|'a'|'b'|'c'|'d'|'w'|'x'|'e'|'y'|'z'|'v'|'f': 
+                            part_string:str = partname_clean + joiner[0] + ".".join(joiner[1:]) 
+                        case 'xm'|'xr':
+                            part_string:str = partname +"."+".".join(joiner[1:])
+                        case 'dh': 
+                            part_string:str = partname +joiner[0] +"."+ ".".join(joiner[1:])   
+                            print("Dict to code string",part_string)
+                        case'da':
+                            part_string:str = partname + joiner[0]
+                            print("Dict to code string",part_string) 
+                        case _:
+                            part_string:str = partname_clean + ".".join(joiner)
+                    
+                
+                output+= part_string + "_"
 
        
         #match Version_ then atleast 2 digits
@@ -168,8 +183,10 @@ class KKLCodeCovertor_Object:
             if bool(name) and convert_list[index] != "":
                 print(name)
                 self.convertdict[name] = KKLcode_to_Dict(convert_list[index])
+                       
             else:
                 print("skipped due to no name." )
+        
         self.compare:str = compare
         self.comparedict:dict = KKLcode_to_Dict(self.compare)
 
@@ -191,6 +208,7 @@ class KKLCodeCovertor_Object:
         
         #Get the dictionaries
         convert_objects_dict:dict = self.convertdict.copy()
+        
         compare_dict:dict = self.comparedict.copy()
         
         #Cleaning the comapare_dict of empty values. And removing version.
@@ -294,15 +312,15 @@ class KKLCodeCovertor_Object:
                 for partkey,partvalue in menuvalue.items():
                     for labelkey,labelvalue in partvalue.items():
                         if menukey not in menu_exclude: 
-                            print("Menukey found:",menukey)
+                            #print("Menukey found:",menukey)
                             if partkey not in part_exclude:  
-                                print("Partkey found:",partkey)
+                                print("Partkey found:",partkey) if partkey == "da" else ""
                                 if labelkey not in label_exclude:
-                                    print("Labelkey found:",labelkey)
-                                    convert_objects_dict[key][menukey] = compare_dict[menukey]
-                                    convert_objects_dict[key][menukey][partkey] = compare_dict[menukey][partkey]
-                                    convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
-                            
+                                    #print("Labelkey found:",labelkey)
+                                    convert_objects_dict[key][menukey] = compare_dict[menukey] if bool(self.convertdict[key].get(menukey)) else convert_objects_dict[key][menukey]
+                                    convert_objects_dict[key][menukey][partkey] = compare_dict[menukey][partkey] if bool(self.convertdict[key][menukey].get(partkey)) else convert_objects_dict[key][menukey][partkey]
+                                    convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey] if bool(self.convertdict[key][menukey][partkey].get(labelkey)) else convert_objects_dict[key][menukey][partkey][labelkey]
+            print(key)                
                             
                             
             convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
