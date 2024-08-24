@@ -69,7 +69,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
             case 'dh'|'da':
                 alphaNum1,alphaNum2 = alphaNum[:2],alphaNum[2:]
                 dot_added_alphaNumeric = f"{alphaNum1}.{alphaNum2}"
-                print(dot_added_alphaNumeric)
+                
                 i:str = i.replace(alphaNum,dot_added_alphaNumeric)
             case _:
                 dot_added_alphaNumeric = f"{alpha}.{num}"
