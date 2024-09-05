@@ -30,7 +30,7 @@
 "cg",
 "ch"
 ],
-"Tin": [
+"Privates": [
 "qa",
 "qb",
 "dc",
@@ -44,7 +44,8 @@
 "eg"
 ],
 "HairEx": [
-"r"
+"r",
+"xr"
 ],
 "Eye": [
 "fa",
@@ -112,7 +113,8 @@
 "lc"
 ],
 "Ribon": [
-"m"
+"m",
+"xm"
 ],
 "Belt": [
 "s"
@@ -217,5 +219,8 @@
 ],
 "HeaderFreeDialogueBox": [
 "z"
+],
+"SourceVersion":[
+"fv"
 ]
 }
