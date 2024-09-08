@@ -109,7 +109,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
         splitter_help_dict = {}
         ####TestStart
         
-        if alphaNum.isalpha():
+        if alphaNum.isalpha() and alphaNum != "da" :
             part_name = alpha
             
             splitter_help_dict = {part_name : dict.fromkeys(helper_dict[alpha].keys(),"")} 
@@ -334,7 +334,7 @@ class KKLCodeCovertor_Object:
                     if labelvalue!= "":  
                         menuOptions.append([menukey]) if [menukey] not in menuOptions[:] else ''
                             
-                        labelOptions.append([menukey,partkey,labelkey])
+                    labelOptions.append([menukey,partkey,labelkey])
                     partOptions.append([menukey,partkey]) if [menukey,partkey] not in partOptions[:] else ''
                     
                     
@@ -426,9 +426,9 @@ Choose option by index(integer only): """)
             print(key) 
             for menukey,partkey,labelkey in label_name_dict:
                 #Check if there are partkeys to be excluded that don't have associaed labelkeys. If so, stop excution immediatley. 
-                if partkey in part_exclude and labelkey not in label_exclude:
+                """if partkey in part_exclude and labelkey in label_exclude:
                     print(menukey,partkey,labelkey,sep="||")
-                    continue
+                    continue"""
 
                 #update the values in the convert_dict    
                 if labelkey not in label_exclude: 
@@ -437,9 +437,9 @@ Choose option by index(integer only): """)
                         convert_objects_dict[key][menukey][partkey] = {}
 
                     convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
-                else:
-                    #print(menukey,partkey,labelkey,sep="??")
-                    pass 
+                """elif partkey in part_exclude:
+                    print(menukey,partkey,labelkey,sep="||")
+                    pass """
             #print(convert_objects_dict[key])                
             #print(labelOptions)
             convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
