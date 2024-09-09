@@ -101,23 +101,27 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     for i in operant_list:
             
         splitBy_List = i
+        #print(splitBy_List) if splitBy_List =="da" else ""
         alphaNum:str = splitBy_List.split(".",maxsplit=1)[0]        #if the part value is alphabet + number, change into alphabet + "." + number
+        #print("|",alphaNum,"|") if len(alphaNum) ==8  else ""
         part_name ="Error in KKLcode_to_dict"
         alpha =re.match(r"([a-z]{1,2})",alphaNum).group(1)
-        
+        #print("|",alpha.strip(),"|") if len(alphaNum) ==8  else ""
+        #Remove the Part name at the start of the  SliptBy_List nd then splt it by .
+        splitBy_dot_List = splitBy_List.removeprefix(alpha).split(".")
+        #print("|",splitBy_dot_List,"|") if len(alphaNum) ==8  else ""
+        splitter_help_dict = {}
         ####TestStart
-        if alphaNum.isalpha():
+        #print(splitBy_dot_List) if alpha =="da" else ""
+        if len(alphaNum)<=2:
             part_name = alpha
             splitter_help_dict = {part_name : dict.fromkeys(helper_dict[alpha].keys(),"")} 
             
         else:
         ####Testend
             num = alphaNum.removeprefix(alpha)    
+            #print("|",num,"|") if len(alphaNum) ==8  else ""
             
-            #Remove the Part name at the start of the  SliptBy_List nd then splt it by .
-            
-            splitBy_dot_List = splitBy_List.removeprefix(alpha).split(".")
-            splitter_help_dict = {}
             #print(alpha,":",num,":",splitBy_dot_List)
             match alpha:
                 #These are of the form [a-z]{1}[0-9]{1}[0-9]+
@@ -133,8 +137,6 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                     
 
                     #print(part_name,":",splitBy_dot_List)
-                    if len(splitBy_dot_List) <=1:
-                        pass
                         
                     else:
                         #print(part_name,":",splitBy_dot_List)
@@ -155,21 +157,25 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                     #print(part_name,":",num,";",splitBy_dot_List)
                 case 'dh'|'da':
                     part_name = alpha
+                    #print(part_name)
                     if part_name in extra_part_catch_set:
                        #print(part_name,splitBy_dot_List)
                        continue 
+                    #print(helper_dict[alpha])
                     splitter_help_dict = {part_name : dict(zip(helper_dict[alpha].keys(),splitBy_dot_List))}  
+                    #print(splitter_help_dict)
                     #print("case3 :",len(name_dict[part_name]) == len(KKL_Parts_Names[alpha])) 
                 case _:
                     part_name = alpha
+                    
                     if part_name in extra_part_catch_set:
                        #print(part_name,splitBy_dot_List)
                        continue 
                     splitter_help_dict = {part_name : dict(zip(helper_dict[alpha].keys(),splitBy_dot_List))}
                     
-                    
-          
-            """splitter_help_dict = {}
+            
+        #print(part_name,splitBy_dot_List,sep="||") if part_name in ["xm202","ac"] else ""
+        """splitter_help_dict = {}
             
             #print(helper_dict[alpha].keys())
             splitter_help_dict = dict(zip(helper_dict[alpha].keys(),splitBy_dot_List))
@@ -177,10 +183,13 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
             #print(splitter_help_dict)
          
             #print(alpha,';',operant_dict[KKL_Names_reversed[alpha]][alpha])
-       
+        
         list_of_parts_to_pop.remove([KKL_Names_reversed[alpha],part_name]) if [KKL_Names_reversed[alpha],part_name] in list_of_parts_to_pop else ""
         list_of_dicts_to_use.append(splitter_help_dict) 
         update_nested_dict(splitter_help_dict,[KKL_Names_reversed[alpha],part_name],operant_dict)
+        #print(operant_dict[KKL_Names_reversed[alpha]][part_name]) if part_name == "da" else ""
+       
+        
     #print("Here +",list_of_parts_to_pop)    
     [[operant_dict[x].pop(y) 
       for y in ["r", 'm', 't', 's', 'a', 'b', 'c', 'd', 'w', 'x', 'e', 'y', 'z', 'v', "f",'xm','xr'] if y in operant_dict[x]]
@@ -221,7 +230,7 @@ def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
             for partname,part_values in values.items():
                  
                 joiner:list = [x for x in part_values.values() if x!=""]
-                #print(partname,":",joiner) if partname in ["r00","s00","t00"] else ""
+                #print(partname,":",joiner) if partname in ["da"] else ""
                 part_string:str = ""
                #If joiner list is empty
                 if joiner==[]:
@@ -277,10 +286,11 @@ class KKLCodeCovertor_Object:
                        
             else:
                 print("skipped due to no name." )
-        
+        print(self.convertdict["Snatcher golem"]["Tan"]["da"])
         self.compare:str = compare
+        print("compare_dict")
         self.comparedict:dict = KKLcode_to_Dict(self.compare)
-
+       
 
         with open(path.join(current_dir,"KKL_Menu_names.json"),"r") as file:
             self.KKL_Menu_Names =  jsonLoad(fp = file)
@@ -309,21 +319,20 @@ class KKLCodeCovertor_Object:
         
         #get list of changes.
         
-        menuOptions:list[str] = list()
-        partOptions:list[str] = list()
-        labelOptions:list[str] = list()
-        labelEmptyVals:list[str] = list()
+        menuOptions:list[list[str]] = list()
+        partOptions:list[list[str,str]] = list()
+        labelOptions:list[list[str,str,str]] = list()
+        labelEmptyVals:list[list[str,str,str]] = list()
+        
+        
         label_name_dict:list[list[str,str,str]] = list()
         
         #Break dictionary into 3 ordered lists
         #print(self.comparedict)
-        """for menukey,menuvalue in name_dict.items():
-            if bool(compare_dict.get(menukey)):
-                for partkey,partvalue in menuvalue.items():
-                    if bool(compare_dict[menukey].get(partkey)):
-                        for labelkey,labelvalue in partvalue.items():
-                            if bool(compare_dict[menukey][partkey].get(labelkey)):  
-                                label_name_dict.append([menukey,partkey,labelkey])"""
+        for menukey in compare_dict:
+                for partkey in compare_dict[menukey]:
+                        for labelkey in compare_dict[menukey][partkey]:  
+                                label_name_dict.append([menukey,partkey,labelkey])
        
 
         for menukey,menuvalue in compare_dict.items():
@@ -331,14 +340,14 @@ class KKLCodeCovertor_Object:
                 for labelkey,labelvalue in partvalue.items():
                     if labelvalue!= "":  
                         menuOptions.append([menukey]) if [menukey] not in menuOptions[:] else ''
-                        
-                        partOptions.append([menukey,partkey]) if [menukey,partkey] not in partOptions[:] else ''
                             
-                        labelOptions.append([menukey,partkey,labelkey])
-                    else:
-                        
-                        labelEmptyVals.append([menukey,partkey,labelkey])
+                    labelOptions.append([menukey,partkey,labelkey])
+                    partOptions.append([menukey,partkey]) if [menukey,partkey] not in partOptions[:] else ''
                     
+                    
+
+        #for x,y,z in  labelOptions
+        #    print(x,y,z, sep="||") if compare_dict[x][y][z] != "" else ""                      
         label_compare_list = labelOptions[:]
         #print()
         #print(labelEmptyVals)
@@ -394,7 +403,6 @@ Choose option by index(integer only): """)
     
         
         
-        
         [partOptions.remove(x) 
         for x in partOptions[:] 
         if x[0] not in menu_exclude]
@@ -418,20 +426,45 @@ Choose option by index(integer only): """)
 
         #print(labelEmptyVals)
   
-        label_compare_list.extend(labelEmptyVals)
+        
         
         list_of_strings = []
-         
-        for key in self.convertdict.keys():
-            for labels in label_compare_list:
+        for key in self.convertdict:
+            print(key) 
+            for menukey,partkey,labelkey in label_name_dict:
+                #Check if there are partkeys to be excluded that don't have associaed labelkeys. If so, stop excution immediatley. 
+                """if partkey in part_exclude and labelkey in label_exclude:
+                    print(menukey,partkey,labelkey,sep="||")
+                    continue"""
+
+                #update the values in the convert_dict    
+                if labelkey not in label_exclude: 
+                    #print(menukey,partkey,labelkey,sep="||")
+                    if partkey not in self.convertdict[key][menukey]:
+                        convert_objects_dict[key][menukey][partkey] = {}
+
+                    convert_objects_dict[key][menukey][partkey][labelkey] = compare_dict[menukey][partkey][labelkey]
+                """elif partkey in part_exclude:
+                    print(menukey,partkey,labelkey,sep="||")
+                    pass """
+            #print(convert_objects_dict[key])                
+            #print(labelOptions)
+            convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
+            convert_objects_dict[key].update({"ver":version})
+            list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
+                
+       
+        return list_of_strings        
+
+
+        """for key in self.convertdict.keys():
+            for labels in label_name_dict:
                 if labels[0] in menu_exclude:
                     for partkey,partvalue in compare_dict[labels[0]].items(): 
-                        if partkey not in part_exclude and labels[2] not in label_exclude:
-                            #print(partkey,partvalue)
                             for labelkey,labelvalue in partvalue.items():
                                 #print(labelkey,labelvalue)
                                 if partkey not in part_exclude and labelkey not in label_exclude:
-                                    convert_objects_dict[key][labels[0]][partkey][labelkey] = labelvalue  
+                                    convert_objects_dict[key][labels[0]][partkey] = compare_dict[la]labelvalue  
                      
                      
             
@@ -441,19 +474,11 @@ Choose option by index(integer only): """)
                 if labels[2] not in label_exclude:
                     #print(labels)
                     convert_objects_dict[key][labels[0]][labels[1]][labels[2]] = compare_dict[labels[0]][labels[1]][labels[2]]
-            
+        """    
 
         
         
-        #print(convert_objects_dict[key])                
         
-            #print(labelOptions)
-            convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
-            convert_objects_dict[key].update({"ver":version})
-            list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
-                
-       
-        return list_of_strings
 
         
 
