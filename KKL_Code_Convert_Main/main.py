@@ -101,23 +101,26 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     for i in operant_list:
             
         splitBy_List = i
+        #print(splitBy_List) if splitBy_List =="da" else ""
         alphaNum:str = splitBy_List.split(".",maxsplit=1)[0]        #if the part value is alphabet + number, change into alphabet + "." + number
+        #print("|",alphaNum,"|") if len(alphaNum) ==8  else ""
         part_name ="Error in KKLcode_to_dict"
         alpha =re.match(r"([a-z]{1,2})",alphaNum).group(1)
+        #print("|",alpha.strip(),"|") if len(alphaNum) ==8  else ""
         #Remove the Part name at the start of the  SliptBy_List nd then splt it by .
         splitBy_dot_List = splitBy_List.removeprefix(alpha).split(".")
+        #print("|",splitBy_dot_List,"|") if len(alphaNum) ==8  else ""
         splitter_help_dict = {}
         ####TestStart
-        
-        if alphaNum.isalpha() and alphaNum != "da" :
+        #print(splitBy_dot_List) if alpha =="da" else ""
+        if len(alphaNum)<=2:
             part_name = alpha
-            
             splitter_help_dict = {part_name : dict.fromkeys(helper_dict[alpha].keys(),"")} 
             
         else:
         ####Testend
             num = alphaNum.removeprefix(alpha)    
-            
+            #print("|",num,"|") if len(alphaNum) ==8  else ""
             
             #print(alpha,":",num,":",splitBy_dot_List)
             match alpha:
@@ -154,10 +157,13 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                     #print(part_name,":",num,";",splitBy_dot_List)
                 case 'dh'|'da':
                     part_name = alpha
+                    #print(part_name)
                     if part_name in extra_part_catch_set:
                        #print(part_name,splitBy_dot_List)
                        continue 
+                    #print(helper_dict[alpha])
                     splitter_help_dict = {part_name : dict(zip(helper_dict[alpha].keys(),splitBy_dot_List))}  
+                    #print(splitter_help_dict)
                     #print("case3 :",len(name_dict[part_name]) == len(KKL_Parts_Names[alpha])) 
                 case _:
                     part_name = alpha
@@ -168,7 +174,7 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
                     splitter_help_dict = {part_name : dict(zip(helper_dict[alpha].keys(),splitBy_dot_List))}
                     
             
-        print(part_name,splitBy_dot_List,sep="||") if part_name in ["xm202","ac"] else ""
+        #print(part_name,splitBy_dot_List,sep="||") if part_name in ["xm202","ac"] else ""
         """splitter_help_dict = {}
             
             #print(helper_dict[alpha].keys())
@@ -177,10 +183,11 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
             #print(splitter_help_dict)
          
             #print(alpha,';',operant_dict[KKL_Names_reversed[alpha]][alpha])
-       
+        
         list_of_parts_to_pop.remove([KKL_Names_reversed[alpha],part_name]) if [KKL_Names_reversed[alpha],part_name] in list_of_parts_to_pop else ""
         list_of_dicts_to_use.append(splitter_help_dict) 
         update_nested_dict(splitter_help_dict,[KKL_Names_reversed[alpha],part_name],operant_dict)
+        #print(operant_dict[KKL_Names_reversed[alpha]][part_name]) if part_name == "da" else ""
        
         
     #print("Here +",list_of_parts_to_pop)    
@@ -223,7 +230,7 @@ def dict_to_KKLCode(input:dict[dict[dict[str]]])->str:
             for partname,part_values in values.items():
                  
                 joiner:list = [x for x in part_values.values() if x!=""]
-                #print(partname,":",joiner) if partname in ["r00","s00","t00"] else ""
+                #print(partname,":",joiner) if partname in ["da"] else ""
                 part_string:str = ""
                #If joiner list is empty
                 if joiner==[]:
@@ -279,11 +286,11 @@ class KKLCodeCovertor_Object:
                        
             else:
                 print("skipped due to no name." )
-        
+        print(self.convertdict["Snatcher golem"]["Tan"]["da"])
         self.compare:str = compare
         print("compare_dict")
         self.comparedict:dict = KKLcode_to_Dict(self.compare)
-
+       
 
         with open(path.join(current_dir,"KKL_Menu_names.json"),"r") as file:
             self.KKL_Menu_Names =  jsonLoad(fp = file)
