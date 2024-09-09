@@ -87,8 +87,8 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     
     if len(importObjectsAddress)>1:
         print(importObjectsAddress)
-        input:str = input.rstrip("_"+importObjectsAddress[0])
-    
+        input:str = input.removesuffix("/#]"+importObjectsAddress[1])
+        #print(input)
     
     #Split @input by "_" into operant_list
     operant_list:list[str]  = input.split("_")
@@ -204,8 +204,8 @@ def KKLcode_to_Dict(input:str)->dict[dict[str]]:
     #End of for loop
         
     if len(importObjectsAddress)>1:
-        operant_dict["importObjects"] = {"importObjects":{"importObjects":importObjectsAddress[0]}} 
-    
+        operant_dict["importObjects"] = {"importObjects":{"importObjects":"/#]"+importObjectsAddress[1]}} 
+        #print(operant_dict["importObjects"]["importObjects"]["importObjects"])
     
     
 
@@ -286,7 +286,7 @@ class KKLCodeCovertor_Object:
                        
             else:
                 print("skipped due to no name." )
-        print(self.convertdict["Snatcher golem"]["Tan"]["da"])
+        
         self.compare:str = compare
         print("compare_dict")
         self.comparedict:dict = KKLcode_to_Dict(self.compare)
@@ -449,7 +449,9 @@ Choose option by index(integer only): """)
                     pass """
             #print(convert_objects_dict[key])                
             #print(labelOptions)
-            convert_objects_dict[key].update({'importObjects':importObjects}) if 'importObjects' in compare_dict else ''
+            convert_objects_dict[key].update({'importObjects':importObjects})
+            print(importObjects)
+            #print(convert_objects_dict[key]['importObjects']['importObjects']['importObjects'])
             convert_objects_dict[key].update({"ver":version})
             list_of_strings.append(dict_to_KKLCode(convert_objects_dict[key]))
                 
